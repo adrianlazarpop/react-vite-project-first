@@ -4,15 +4,14 @@ import "./index.css";
 // import App from "./App.jsx";
 // import AppClass from "./App2.jsx";
 // import Hello from "./Hello.jsx";
-import Card from "./Card";
+import CardList from "./CardList";
 import "tachyons";
+import { robots } from "./robots";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     {/* <AppClass /> */}
     {/* <App /> */}
-    <Card />
-    <Card />
-    <Card />
+    <CardList robots={robots} />
   </StrictMode>
 );
