@@ -1,6 +1,9 @@
 import Card from "./Card";
 
 const CardList = ({ robots }) => {
+  // robots.forEach((element) => {
+  //   console.log(element.name);
+  // });
   return (
     <>
       {robots.map((user) => {
@@ -13,6 +16,7 @@ const CardList = ({ robots }) => {
           />
         );
       })}
+      <h1>TEST</h1>
     </>
   );
 };
