@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
-import { robots as robotsData } from "../robots.js";
+// import { robots as robotsData } from "../robots.js";
 import Scroll from "../components/Scroll";
 import "./App.css";
 
@@ -14,9 +14,10 @@ function App() {
   //   };
   // }
 
-  // const [robots, setRobots] = useState([robotsData]);
-  const robots = robotsData;
+  const [robots, setRobots] = useState([]);
+  // const robots = robotsData;
   const [searchfield, setSearchfield] = useState("");
+  const [count, setCount] = useState(0);
 
   // componentDidMount() {
   //   fetch("https://jsonplaceholder.typicode.com/users")
@@ -28,22 +29,23 @@ function App() {
   //     });
   // }
 
-  // useEffect(() => {
-  //   fetch("https://jsonplaceholder.typicode.com/users")
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((users) => {
-  //       setRobots(users);
-  //     });
-  //   setRobots(robotsData);
-  // }, []);
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => {
+        return response.json();
+      })
+      .then((users) => {
+        setRobots(users);
+      });
+    // setRobots(robotsData);
+    console.log(count);
+  }, [count]);
 
   const onSearchChange = (event) => {
     setSearchfield(event.target.value);
   };
 
-  console.log(robots, searchfield);
+  // console.log(robots, searchfield);
 
   const filteredRobots = robots.filter((robot) => {
     return robot.name.toLowerCase().includes(searchfield.toLowerCase());
@@ -54,6 +56,7 @@ function App() {
   ) : (
     <div className="tc">
       <h1 className="f1">RoboFriends</h1>
+      <button onClick={() => setCount(count + 1)}>Click me!</button>
       <SearchBox searchChange={onSearchChange} />
       <Scroll>
         <CardList robots={filteredRobots} />
