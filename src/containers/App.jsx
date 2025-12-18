@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
-// import { robots } from "./robots";
+import { robots as robotsData } from "../robots.js";
 import Scroll from "../components/Scroll";
 import "./App.css";
 
@@ -14,7 +14,8 @@ function App() {
   //   };
   // }
 
-  const [robots, setRobots] = useState([]);
+  // const [robots, setRobots] = useState([robotsData]);
+  const robots = robotsData;
   const [searchfield, setSearchfield] = useState("");
 
   // componentDidMount() {
@@ -27,15 +28,16 @@ function App() {
   //     });
   // }
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => {
-        return response.json();
-      })
-      .then((users) => {
-        setRobots(users);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://jsonplaceholder.typicode.com/users")
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((users) => {
+  //       setRobots(users);
+  //     });
+  //   setRobots(robotsData);
+  // }, []);
 
   const onSearchChange = (event) => {
     setSearchfield(event.target.value);
